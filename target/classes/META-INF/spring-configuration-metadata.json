@@ -1,0 +1,32 @@
+{
+  "groups": [
+    {
+      "name": "",
+      "type": "com.hmhco.scoring.DatabaseConfig",
+      "sourceType": "com.hmhco.scoring.DatabaseConfig"
+    },
+    {
+      "name": "",
+      "type": "com.hmhco.scoring.DatabaseConnection",
+      "sourceType": "com.hmhco.scoring.DatabaseConnection"
+    }
+  ],
+  "properties": [
+    {
+      "name": "password",
+      "type": "java.lang.String",
+      "sourceType": "com.hmhco.scoring.DatabaseConfig"
+    },
+    {
+      "name": "url",
+      "type": "java.lang.String",
+      "sourceType": "com.hmhco.scoring.DatabaseConfig"
+    },
+    {
+      "name": "username",
+      "type": "java.lang.String",
+      "sourceType": "com.hmhco.scoring.DatabaseConfig"
+    }
+  ],
+  "hints": []
+}
