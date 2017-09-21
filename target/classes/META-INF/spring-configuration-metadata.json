@@ -13,17 +13,32 @@
   ],
   "properties": [
     {
-      "name": "password",
+      "name": "reporting-password",
       "type": "java.lang.String",
       "sourceType": "com.hmhco.scoring.DatabaseConfig"
     },
     {
-      "name": "url",
+      "name": "reporting-url",
       "type": "java.lang.String",
       "sourceType": "com.hmhco.scoring.DatabaseConfig"
     },
     {
-      "name": "username",
+      "name": "reporting-username",
+      "type": "java.lang.String",
+      "sourceType": "com.hmhco.scoring.DatabaseConfig"
+    },
+    {
+      "name": "scoring-password",
+      "type": "java.lang.String",
+      "sourceType": "com.hmhco.scoring.DatabaseConfig"
+    },
+    {
+      "name": "scoring-url",
+      "type": "java.lang.String",
+      "sourceType": "com.hmhco.scoring.DatabaseConfig"
+    },
+    {
+      "name": "scoring-username",
       "type": "java.lang.String",
       "sourceType": "com.hmhco.scoring.DatabaseConfig"
     }

@@ -18,28 +18,63 @@ import java.sql.SQLException;
 @ConfigurationProperties
 public class DatabaseConnection {
 
-
     @Autowired
-    private DatabaseConfig databaseConfig;
+    private DatabaseConfig dbConfig;
+
+    private Connection reportingConn;
+
+    private Connection scoringConn;
 
     public DatabaseConnection() {
-        this.databaseConfig = databaseConfig;
+
     }
 
+    public Connection getReportingConnection()  throws SQLException {
 
-    public Connection getConnection()  throws SQLException {
+        reportingConn = DriverManager.getConnection(
+                    dbConfig.getReportingUrl(),
+                    dbConfig.getReportingUsername(),
+                    dbConfig.getReportingPassword()
+                    );
+
+        if (reportingConn == null) {
+            System.out.println("reportingConn Not successful....");
+        } else {
+            System.out.println("reportingConn Successful...." + reportingConn );
+        }
+        return reportingConn;
+    }
+
+    public Connection getScoringConnection()  throws SQLException {
+
+            scoringConn = DriverManager.getConnection(
+                    dbConfig.getScoringUrl(),
+                    dbConfig.getScoringUsername(),
+                    dbConfig.getScoringPassword()
+            );
+        if (scoringConn == null) {
+            System.out.println("scoringConn Not successful....");
+        } else {
+            System.out.println("scoringConn  Successful...." + scoringConn );
+        }
+        return scoringConn;
+    }
+
+    public  Connection getConnection(ConnectionType type) {
         Connection connection = null;
-           connection = DriverManager.getConnection(
-                    databaseConfig.getUrl(),
-                    databaseConfig.getUsername(),
-                    databaseConfig.getPassword());
-
-                    if(connection ==null){
-                        System.out.println("Not successful....");
-                    }else{
-                        System.out.println("Successful...." + connection);
-                    }
-
+        try {
+            if(ConnectionType.SCORING == type ) {
+                if (scoringConn == null || scoringConn.isClosed()) {
+                    connection = getScoringConnection();
+                }
+            }else if(ConnectionType.REPORTING == type) {
+                if (reportingConn == null || reportingConn.isClosed()) {
+                    connection = getReportingConnection();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         return connection;
     }

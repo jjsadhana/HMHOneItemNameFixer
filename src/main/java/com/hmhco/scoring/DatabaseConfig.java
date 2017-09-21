@@ -12,40 +12,58 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties
 public class DatabaseConfig {
 
-    private String url;
-    private String username;
-    private String password;
+    private String  reportingUrl;
+    private String  reportingUsername;
+    private String  reportingPassword;
+    private String  scoringUrl;
+    private String  scoringUsername;
+    private String  scoringPassword;
 
-    public DatabaseConfig(String url, String username, String password) {
-        this.url = url;
-        this.username = username;
-        this.password = password;
+    public String getReportingUrl() {
+        return reportingUrl;
     }
 
-    public DatabaseConfig() {
+    public void setReportingUrl(String reportingUrl) {
+        this.reportingUrl = reportingUrl;
     }
 
-    public String getUrl() {
-        return url;
+    public String getReportingUsername() {
+        return reportingUsername;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setReportingUsername(String reportingUsername) {
+        this.reportingUsername = reportingUsername;
     }
 
-    public String getUsername() {
-        return username;
+    public String getReportingPassword() {
+        return reportingPassword;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setReportingPassword(String reportingPassword) {
+        this.reportingPassword = reportingPassword;
     }
 
-    public String getPassword() {
-        return password;
+    public String getScoringUrl() {
+        return scoringUrl;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setScoringUrl(String scoringUrl) {
+        this.scoringUrl = scoringUrl;
+    }
+
+    public String getScoringUsername() {
+        return scoringUsername;
+    }
+
+    public void setScoringUsername(String scoringUsername) {
+        this.scoringUsername = scoringUsername;
+    }
+
+    public String getScoringPassword() {
+        return scoringPassword;
+    }
+
+    public void setScoringPassword(String scoringPassword) {
+        this.scoringPassword = scoringPassword;
     }
 }

@@ -1,1 +1,10 @@
+com/hmhco/scoring/Data.class
+com/hmhco/scoring/HelloMessageService.class
 META-INF/spring-configuration-metadata.json
+com/hmhco/scoring/ConnectionType.class
+com/hmhco/scoring/ItemNameFixer.class
+com/hmhco/scoring/ProcessorInvoker.class
+com/hmhco/scoring/ReportingUtil.class
+com/hmhco/scoring/DatabaseConnection.class
+com/hmhco/scoring/ScoringUtil.class
+com/hmhco/scoring/DatabaseConfig.class
