@@ -1,0 +1,23 @@
+---
+spring:
+  application:
+    name: HMHOneItemNameFixer
+  cloud:
+    config:
+      label: ${git-branch:develop}      
+      uri: https://report-config-server.br.hmheng.io
+      username: user
+      password: 5432132121
+
+  profiles:
+      active: prod
+---
+spring:
+  profiles: prod
+  cloud:
+    config:
+      label: ${git-branch:develop}
+      uri: https://report-config-server.br.hmheng.io
+      username: user
+      password: 1234512312     
+

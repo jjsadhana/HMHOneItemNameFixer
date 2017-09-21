@@ -17,9 +17,9 @@ import java.util.UUID;
  */
 
 @SpringBootApplication
-//@Configuration
-//@ComponentScan("com.hmhco.scoring")
-@EnableConfigServer
+@Configuration
+@ComponentScan("com.hmhco.scoring")
+//@EnableConfigServer
 public class ItemNameFixer implements CommandLineRunner {
     @Autowired
     private DatabaseConnection databaseConnection;

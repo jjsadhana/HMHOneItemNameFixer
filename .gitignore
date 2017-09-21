@@ -12,4 +12,6 @@ src/main/resources/git.properties
 .vagrant/*
 apps/poc/service_tests/.target/*
 apps/poc/service_tests/testFile.log
+.idea/workspace.xml
+
 # Created by .ignore support plugin (hsz.mobi)

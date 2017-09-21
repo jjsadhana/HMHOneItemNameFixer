@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -23,15 +24,15 @@ public class ProcessorInvoker {
 
     public void ConvertIntoChunks(List<UUID> sessions){
 
-        List<List<UUID>> smallersessions = Lists.partition(sessions, 30);
+        List<List<UUID>> smallersessions = Lists.partition(sessions,30);
 
         RestTemplate restTemplate = new RestTemplate();
 
-        for(int i=0; i< 1;i++) {
+        for(int i=0; i< smallersessions.size();i++) {
             String result = convertListToString(smallersessions.get(i));
             System.out.println(i+"====>"+result);
             String requestJson = "{\"session_id\":["+result+"]}";
-            System.out.println("requestJson====>"+requestJson);
+            System.out.println("requestJson====>"+requestJson.length()+"  "+requestJson);
             invokeRescore(restTemplate, url, requestJson);
             try {
                 Thread.sleep(500);
@@ -43,18 +44,23 @@ public class ProcessorInvoker {
 
     private String convertListToString(List<UUID> smallersessions){
         String result = smallersessions.stream()
-                .map((s) -> "\\\"" + s + "\\\"")
+                .map((s) -> "\"" + s + "\"")
                 .collect(Collectors.joining(", "));
 
         return result;
     }
 
     private static void invokeRescore(RestTemplate restTemplate, String url, String requestJson) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<String> entity = new HttpEntity<String>(requestJson,headers);
-        String answer = restTemplate.postForObject(url, entity, String.class);
-        System.out.println(answer);
+            HttpEntity<String> entity = new HttpEntity<String>(requestJson,headers);
+            String answer = restTemplate.postForObject(url, entity, String.class);
+            System.out.println(answer);
+        } catch (RestClientException e) {
+            System.out.println("==="+e.fillInStackTrace());
+            e.printStackTrace();
+        }
     }
 }
